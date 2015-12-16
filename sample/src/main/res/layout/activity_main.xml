@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <me.brucezz.dotswitchview.DotSwitchView
+        android:id="@+id/dot_switch_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="16dp"
+        app:dot_size="12dp"
+        app:dot_count="5"
+        app:dot_interval="24dp"
+        app:dot_color="#70FFFFFF"
+        app:dot_selected_color="#FFFFFF"
+        app:dot_current="0"
+        />
+
+</FrameLayout>

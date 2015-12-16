@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <me.brucezz.dotswitchview.DotSwitchView
+            android:id="@+id/dot_switch_view"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prev" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size: 12dp" />
+
+        <!--size 10~24-->
+        <SeekBar
+            android:id="@+id/size"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:max="14"
+            android:progress="2" />
+
+        <TextView
+            android:id="@+id/tv_interval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Interval: 24dp" />
+
+        <!--interval 0~48-->
+        <SeekBar
+            android:id="@+id/interval"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:max="48"
+            android:progress="24" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Count: 5" />
+
+        <!--count 3~9-->
+        <SeekBar
+            android:id="@+id/count"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:max="6"
+            android:progress="2" />
+
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration: 300ms" />
+
+        <!--duration 100 ~ 2000-->
+        <SeekBar
+            android:id="@+id/duration"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:max="190"
+            android:progress="20" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

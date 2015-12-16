@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DotIndicator">
+        <!--dot大小-->
+        <attr name="dot_size" format="dimension" />
+        <!--dot个数-->
+        <attr name="dot_count" format="integer" />
+        <!--dot间距-->
+        <attr name="dot_interval" format="dimension" />
+        <!--dot颜色-->
+        <attr name="dot_color" format="color" />
+        <!--dot被选中的颜色-->
+        <attr name="dot_selected_color" format="color" />
+        <!--dot当前选中位置-->
+        <attr name="dot_current" format="integer" />
+
+    </declare-styleable>
+
+</resources>
