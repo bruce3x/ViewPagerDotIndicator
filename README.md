@@ -17,12 +17,14 @@ dotIndicator.setDuration(300);//300ms
 
 - 普通切换
 
+```Java
 dotSwitchView.next();//上一个
 dotSwitchView.previous();//下一个
+```
 
 - 和ViewPager配合使用
 
-**dotIndicator.moveWithViewPager()**
+> **dotIndicator.moveWithViewPager()**
 
 ```Java
 viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -41,4 +43,9 @@ viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
     }
 });
 ```
+
+# ScreenShot
+![screenshot01](screenshot/screenshot01.png)
+![screenshot02](screenshot/screenshot02.png)
+
 
