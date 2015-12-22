@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <me.brucezz.dotswitchview.DotSwitchView
-        android:id="@+id/dot_switch_view"
+    <me.brucezz.viewpagerdotindicator.DotIndicator
+        android:id="@+id/dot_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"

@@ -16,6 +16,10 @@ import java.util.List;
 
 import me.brucezz.viewpagerdotindicator.DotIndicator;
 
+/**
+ * Created by zero on 12/22/2015.
+ * DotIndicator
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         initViewPager();
 
-        indicator = (DotIndicator) findViewById(R.id.dot_switch_view);
+        indicator = (DotIndicator) findViewById(R.id.dot_indicator);
 
     }
 

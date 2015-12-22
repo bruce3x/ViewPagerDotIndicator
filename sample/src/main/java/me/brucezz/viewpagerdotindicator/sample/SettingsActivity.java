@@ -8,15 +8,16 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import me.brucezz.dotswitchview.DotSwitchView;
+import me.brucezz.viewpagerdotindicator.DotIndicator;
+
 
 /**
- * Created by zero on 12/13/2015.
- * DotSwitchView
+ * Created by zero on 12/22/2015.
+ * DotIndicator
  */
 public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-    private DotSwitchView dotSwitchView;
+    private DotIndicator indicator;
 
     private TextView sizeText;
     private TextView intervalText;
@@ -45,29 +46,29 @@ public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSee
     }
 
     /**
-     * 用代码设置DotSwitchView的属性
+     * 用代码设置DotIndicator的属性
      */
     private void initDotSwitchView() {
-        dotSwitchView = (DotSwitchView) findViewById(R.id.dot_switch_view);
+        indicator = (DotIndicator) findViewById(R.id.dot_indicator);
 
-        dotSwitchView.setDotSize(12);//12dp
-        dotSwitchView.setDotCount(5);
-        dotSwitchView.setDotInterval(24);//24dp
-        dotSwitchView.setDotColor(Color.BLUE);
-        dotSwitchView.setDotSelectedColor(Color.RED);
-        dotSwitchView.setDuration(300);//300ms
+        indicator.setDotSize(12);//12dp
+        indicator.setDotCount(5);
+        indicator.setDotInterval(24);//24dp
+        indicator.setDotColor(Color.BLUE);
+        indicator.setDotSelectedColor(Color.RED);
+        indicator.setDuration(300);//300ms
 
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.prev) {
-            dotSwitchView.previous();
+            indicator.previous();
             return;
         }
 
         if (v.getId() == R.id.next) {
-            dotSwitchView.next();
+            indicator.next();
             return;
         }
     }
@@ -78,25 +79,25 @@ public class SettingsActivity extends AppCompatActivity implements SeekBar.OnSee
 
             case R.id.size:
                 //size 10 ~ 24dp
-                dotSwitchView.setDotSize(progress + 10);
+                indicator.setDotSize(progress + 10);
                 sizeText.setText("Size: " + (progress + 10) + "dp");
                 break;
 
             case R.id.interval:
                 //interval 0 ~ 48dp
-                dotSwitchView.setDotInterval(progress);
+                indicator.setDotInterval(progress);
                 intervalText.setText("Interval: " + progress + "dp");
                 break;
 
             case R.id.count:
                 //count 3 ~ 9
-                dotSwitchView.setDotCount(progress + 3);
+                indicator.setDotCount(progress + 3);
                 countText.setText("Count: " + (progress + 3));
                 break;
 
             case R.id.duration:
                 //duration 100 ~ 2000ms
-                dotSwitchView.setDuration(10 * (progress + 10));
+                indicator.setDuration(10 * (progress + 10));
                 durationText.setText("Duration: " + (10 * (progress + 10)) + "ms");
                 break;
         }

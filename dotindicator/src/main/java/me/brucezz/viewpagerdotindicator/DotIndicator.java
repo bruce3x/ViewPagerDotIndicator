@@ -19,32 +19,32 @@ public class DotIndicator extends View {
     private static final String TAG = "DotIndicator";
 
     /**
-     * 点的大小
+     * Dot的大小
      */
     private float dotSize;
 
     /**
-     * 点的数量
+     * Dot的数量
      */
     private int dotCount;
 
     /**
-     * 间隔
+     * Dot间隔
      */
     private float dotInterval;
 
     /**
-     * 未选中点的颜色
+     * 未选中Dot的颜色
      */
     private int dotColor;
 
     /**
-     * 选中点的颜色
+     * 选中Dot的颜色
      */
     private int dotSelectedColor;
 
     /**
-     * 选中点的位置
+     * 选中Dot的位置
      */
     private int current;
     /**
@@ -57,16 +57,17 @@ public class DotIndicator extends View {
      */
     private Paint dotPaint;
 
+    /**
+     * 实际绘制位置
+     */
+    private int realDrawPoint = 0;
+
 
     /**
      * 滑动动画时长
      */
     private int duration = 500;
 
-    /**
-     * 实际画点的位置
-     */
-    private int curPosition;
 
     private Scroller scroller;
 
@@ -101,7 +102,6 @@ public class DotIndicator extends View {
             dotColor = ta.getColor(R.styleable.DotIndicator_dot_color, defaultUnselectedColor);
             dotSelectedColor = ta.getColor(R.styleable.DotIndicator_dot_selected_color, defaultSelectedColor);
             current = ta.getInt(R.styleable.DotIndicator_dot_current, defaultCurrent);
-            updateCurPosition();
 
         } finally {
             ta.recycle();
@@ -140,17 +140,20 @@ public class DotIndicator extends View {
 
         int left = getPaddingLeft();
         int top = getPaddingTop();
+        int radius = (int) (dotSize / 2);
 
+        //绘制所有未选中Dot
         dotPaint.setColor(dotColor);
         for (int i = 0; i < dotCount; i++) {
 
-            canvas.drawCircle(left + dotSize / 2, top + dotSize / 2, dotSize / 2, dotPaint);
+            canvas.drawCircle(left + radius, top + radius, radius, dotPaint);
 
             left += dotSize + dotInterval;
         }
 
+        //绘制选中的Dot
         dotPaint.setColor(dotSelectedColor);
-        canvas.drawCircle(curPosition + dotSize / 2, top + dotSize / 2, dotSize / 2, dotPaint);
+        canvas.drawCircle(realDrawPoint + radius, top + radius, radius, dotPaint);
 
     }
 
@@ -173,16 +176,16 @@ public class DotIndicator extends View {
     @Override
     public void computeScroll() {
         if (scroller != null && scroller.computeScrollOffset()) {
-            curPosition = getPaddingLeft() + scroller.getCurrX();
+            realDrawPoint = getPaddingLeft() + scroller.getCurrX();
             postInvalidate();
         }
     }
 
     /**
-     * 更新绘制位置
+     * 计算实际绘制位置
      */
-    private void updateCurPosition() {
-        curPosition = (int) ((current + offset) * (dotSize + dotInterval));
+    private void updateRealDrawPoint() {
+        realDrawPoint = getPaddingLeft() + (int) ((current + offset) * (dotSize + dotInterval));
     }
 
     /***************************************************
@@ -193,7 +196,6 @@ public class DotIndicator extends View {
         return current;
     }
 
-    //// TODO: 15-12-13 setCurrent()方法修改成直接跳转 无动画， 或者添加是否设置动画的方法
     public void setCurrent(int dest) {
         if (dest < 0 || dest >= dotCount) return;
 
@@ -216,13 +218,12 @@ public class DotIndicator extends View {
         return dotCount;
     }
 
-
-    //// TODO: 15-12-13 设置界面,调节count，当 count<current时，会出现bug
     public void setDotCount(int dotCount) {
         this.dotCount = dotCount;
         if (current >= dotCount)
             current = dotCount - 1;
 
+        updateRealDrawPoint();
         requestLayout();
         invalidate();
     }
@@ -236,7 +237,7 @@ public class DotIndicator extends View {
      */
     public void setDotInterval(float dotInterval) {
         this.dotInterval = dp2px(dotInterval);
-        updateCurPosition();
+        updateRealDrawPoint();
         requestLayout();
         invalidate();
     }
@@ -259,7 +260,7 @@ public class DotIndicator extends View {
      */
     public void setDotSize(float dotSize) {
         this.dotSize = dp2px(dotSize);
-        updateCurPosition();
+        updateRealDrawPoint();
         requestLayout();
         invalidate();
     }
@@ -280,14 +281,14 @@ public class DotIndicator extends View {
     public void moveWithViewPager(int position, float positionOffset) {
         current = position;
         offset = positionOffset;
-        updateCurPosition();
+        updateRealDrawPoint();
         invalidate();
     }
 
     /**
      * dp转化为px
      */
-    private float dp2px(float dp) {
+    public float dp2px(float dp) {
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics);
     }

@@ -10,8 +10,8 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <me.brucezz.dotswitchview.DotSwitchView
-            android:id="@+id/dot_switch_view"
+        <me.brucezz.viewpagerdotindicator.DotIndicator
+            android:id="@+id/dot_indicator"
             
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
